@@ -17,8 +17,8 @@ public class Main {
 		System.out.println("--- Train Management App! ---\n");
 		// linkedlist maintains the insertion order
 		List<String> trainConsist = new LinkedList<>();
-		trainConsist.add("Sleeper");
 		trainConsist.add("Engine");
+		trainConsist.add("Sleeper");
 		trainConsist.add("AC");
 		trainConsist.add("Cargo");
 		trainConsist.add("Guard");
