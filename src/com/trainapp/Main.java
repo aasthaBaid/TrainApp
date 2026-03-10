@@ -4,9 +4,9 @@ import java.util.*;
 //import java.util.Scanner;
 
 
-/* UC5: Preserve Insertion Order of Bogies (LinkedHashSet)
+/* UC6 Map Bogie to Capacity (HashMap)
  * @author developer
- * @version 5.0
+ * @version 6.0
  * 
  * */
 public class Main {
@@ -15,19 +15,18 @@ public class Main {
 //		Scanner sc = new Scanner(System.in);
 		
 		System.out.println("--- Train Management App! ---\n");
-		// linkedHashSet maintains the insertion order and removes duplicates
-		Set<String> formation = new LinkedHashSet<String>();
-		formation.add("Engine");
-		formation.add("Sleeper");
-		formation.add("Cargo");
-		formation.add("Guard");
-		// attempting to duplicate a bogie
-		formation.add("Sleeper");
+		// using HashMap to put {bogie name , capacity}
+		Map<String, Integer> capacityMap = new HashMap<String, Integer>();
+		capacityMap.put("First Class", 24);
+		capacityMap.put("Sleeper", 72);
+		capacityMap.put("Cargo", 120);
+		capacityMap.put("AC Chair", 56);
 		
-		// printing the set
-		System.out.println("Final Train formation:");
-		System.out.println(formation);
-
+		// using entrset() to iterate over the map
+		System.out.println("Bogie Capacity Details:");
+		for(Map.Entry<String, Integer> map : capacityMap.entrySet()) {
+			System.out.println(map.getKey() + " -> " + map.getValue());
+		}
 	}
 
 }
