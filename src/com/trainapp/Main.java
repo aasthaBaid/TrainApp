@@ -4,9 +4,9 @@ import java.util.*;
 //import java.util.Scanner;
 
 
-/* UC4: Maintain Ordered Bogie IDs LinkedList)
+/* UC5: Preserve Insertion Order of Bogies (LinkedHashSet)
  * @author developer
- * @version 4.0
+ * @version 5.0
  * 
  * */
 public class Main {
@@ -15,26 +15,18 @@ public class Main {
 //		Scanner sc = new Scanner(System.in);
 		
 		System.out.println("--- Train Management App! ---\n");
-		// linkedlist maintains the insertion order
-		List<String> trainConsist = new LinkedList<>();
-		trainConsist.add("Sleeper");
-		trainConsist.add("Engine");
-		trainConsist.add("AC");
-		trainConsist.add("Cargo");
-		trainConsist.add("Guard");
+		// linkedHashSet maintains the insertion order and removes duplicates
+		Set<String> formation = new LinkedHashSet<String>();
+		formation.add("Engine");
+		formation.add("Sleeper");
+		formation.add("Cargo");
+		formation.add("Guard");
+		// attempting to duplicate a bogie
+		formation.add("Sleeper");
 		
-		System.out.println("Initial Train Consist: " +trainConsist);
-		
-		//adding at an index
-		trainConsist.add(2, "Pantry Car");
-		System.out.println("After inserting pantry car: " +trainConsist);
-		
-		// removing first and last bogie
-		trainConsist.removeFirst();
-		trainConsist.removeLast();
-		// printing the final list
-		System.out.println("After removing first and last bogie: " + trainConsist);
-
+		// printing the set
+		System.out.println("Final Train formation:");
+		System.out.println(formation);
 
 	}
 
