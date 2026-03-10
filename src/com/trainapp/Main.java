@@ -21,32 +21,22 @@ public class Main {
 		Bogie b2 = new Bogie("AC Chair" , 56);
 		Bogie b3 = new Bogie("First Class" , 24);
 		Bogie b4 = new Bogie("General" , 90);
-		Bogie b5 = new Bogie("First Class" , 60);
-		Bogie b6 = new Bogie("Sleeper" , 70);
-
+		
 		bogies.add(b1);
 		bogies.add(b2);
 		bogies.add(b3);
 		bogies.add(b4);
-		bogies.add(b5);
-		bogies.add(b6);
-		System.out.println("Bogie with capacity without filtering:");
+		// printing bogies with its capacity
+		System.out.println("Bogie with capacity:");
 		for(Bogie b : bogies) {
 			System.out.println(b.name +" -> " + b.capacity);
 		}
-		// grouping the list, using stream and groupedBy function in collectors and storing it in a map
-		Map<String,List<Bogie>> groupedBogies = bogies.stream()
-								.collect(Collectors.groupingBy(b -> b.name));
-		
-		System.out.println("\nGrouping the list using bogie names:");
-		// printing the grouped map
-		for(Map.Entry<String, List<Bogie>> map : groupedBogies.entrySet()) {
-			System.out.println("\nBogie: "+ map.getKey());
-			for(Bogie b : map.getValue()) {
-				System.out.println("[" + b.name + " -> " + b.capacity + "]");
-			}
-			
+		// calculating the total capacity of the train.
+		int totalCapacity = 0;
+		for(Bogie b : bogies) {
+			totalCapacity += b.capacity;
 		}
+		System.out.println("Total Capacity in train including all bogies:" + totalCapacity);
 		
 	}	
 
