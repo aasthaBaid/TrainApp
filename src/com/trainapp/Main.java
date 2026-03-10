@@ -2,11 +2,12 @@ package com.trainapp;
 
 import java.util.*;
 //import java.util.Scanner;
+import java.util.stream.Collectors;
 
 
-/* UC7: Sort Bogies by Capacity (Comparator)
+/* UC8: Filter Passenger Bogies Using Streams
  * @author developer
- * @version 7.0
+ * @version 8.0
  * 
  * */
 public class Main {
@@ -24,23 +25,21 @@ public class Main {
 		bogies.add(b2);
 		bogies.add(b3);
 		bogies.add(b4);
-		System.out.println("Bogie with capacity without sorting:");
+		System.out.println("Bogie with capacity without filtering:");
 		for(Bogie b : bogies) {
 			System.out.println(b.name +" -> " + b.capacity);
 		}
-		// sorted in ascending order based on capacity
-		System.out.println("\nBogie with capacity after sorting (asc order):");
-		Comparator<Bogie> nameComparator = Comparator.comparing(b -> b.capacity);
-		Collections.sort(bogies, nameComparator);
-		for(Bogie b : bogies) {
+		// filtered using stream, where capacity > 60 and again converted into list
+		List<Bogie> filtered = bogies.stream()
+								.filter(b -> b.capacity > 60)
+								.collect(Collectors.toList());
+		
+		System.out.println("\nBogie with capacity with filtering using stream (capacity > 60):");
+		// printing the filtered list
+		for(Bogie b : filtered) {
 			System.out.println(b.name +" -> " + b.capacity);
 		}
-		// sorted in descending order base don capacity
-		System.out.println("\nBogie with capacity after sorting (desc order):");
-		Collections.sort(bogies, nameComparator.reversed());
-		for(Bogie b : bogies) {
-			System.out.println(b.name +" -> " + b.capacity);
-		}
+		
 	}	
 
 }
