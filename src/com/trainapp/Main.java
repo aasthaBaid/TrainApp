@@ -2,44 +2,30 @@ package com.trainapp;
 
 import java.util.*;
 
-/* UC16: Sort Passenger Bogies by Capacity (Bubble Sort – Algorithm Intro)
+/*  UC17: Sort Bogie Names Using Arrays.sort()
  * @author developer
- * @version 16.0
- * 
+ * @version 17.0
  * */
 public class Main {
 
 	public static void main(String[] args){
 
 		System.out.println(" --- Train Management App! ---\n");
+		// making a list of bogie names.
+		ArrayList<String> names = new ArrayList<String>();
+		names.add("Sleeper");
+		names.add("AC chair");
+		names.add("First class");
+		names.add("General");
+		names.add("luxury");
 		
-		// Create array of passenger bogie capacities
-        int[] capacities = {72, 56, 24, 70, 60};
+		System.out.println("Bogies in original manner:" + names);
+		Collections.sort(names);
+		System.out.println("Bogies in sorted manner (alphabetical):" + names);
 
-        // Display original order
-        System.out.println("Original Capacities:");
-        for (int c : capacities) {
-            System.out.print(c + " ");
-        }
-
-        // Outer loop controls number of passes
-        for (int i = 0; i < capacities.length - 1; i++) {
-            // Inner loop compares adjacent elements
-            for (int j = 0; j < capacities.length - 1 - i; j++) {
-                if (capacities[j] > capacities[j + 1]) {
-                    // swap
-                    int temp = capacities[j];
-                    capacities[j] = capacities[j + 1];
-                    capacities[j + 1] = temp;
-                }
-            }
-        }
-
-        // Display sorted result
-        System.out.println("\n\nSorted Capacities (Ascending):");
-        for (int c : capacities) {
-            System.out.print(c + " ");
-        }
-
+		
+		
+		
+		
 	}
 }
