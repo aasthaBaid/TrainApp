@@ -2,9 +2,9 @@ package com.trainapp;
 
 import java.util.*;
 
-/* UC12: Safety Compliance Check for Goods Bogies
+/* UC13: Performance Comparison (Loops vs Streams)
  * @author developer
- * @version 12.0
+ * @version 13.0
  * 
  * */
 public class Main {
@@ -12,38 +12,38 @@ public class Main {
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		System.out.println(" --- Train Management App! ---\n");
-		// Create goods bogies list
-        List<GoodsBogie> goodsBogies = new ArrayList<>();
 
-        goodsBogies.add(new GoodsBogie("Cylindrical", "Petroleum"));
-        goodsBogies.add(new GoodsBogie("Open", "Coal"));
-        goodsBogies.add(new GoodsBogie("Box", "Grain"));
-        goodsBogies.add(new GoodsBogie("Cylindrical", "Coal")); 
-        // Display bogies
-        System.out.println("Goods Bogies in Train:");
-        goodsBogies.forEach(bg -> System.out.println(bg.type + " -> " + bg.cargo));
-        System.out.println();
+		List<Bogie> bogies = new ArrayList<>();
+		bogies.add(new Bogie("Sleeper" , 72));
+		bogies.add(new Bogie("AC chair" , 54));
+		bogies.add(new Bogie("First Class" , 24));
+		bogies.add(new Bogie("General" , 90));
 
-        // Safety rule:
-        // Cylindrical bogies are ONLY safe if carrying Petroleum
-        boolean isSafe = goodsBogies.stream().allMatch(bg -> {
-            if (bg.type.equalsIgnoreCase("Cylindrical")) {
-                return bg.cargo.equalsIgnoreCase("Petroleum");
-            }
-            return true; // all other bogies okay
-        });
+		double startTime = System.nanoTime();
+		// use for loop to filter
 
-        // Print result
-        System.out.println("Safety Compliance Status: " + isSafe);
+		List<Bogie> loopFiltered = new ArrayList<>();
+		for (Bogie b : bogies) {
+			if (b.capacity >= 50) {
+				loopFiltered.add(b);
+			}
+		}
 
-        if (isSafe) {
-            System.out.println("Train formation is SAFE.");
-        } else {
-            System.out.println("Train formation is NOT SAFE.");
-        }
+		double endTime = System.nanoTime();
+		double timeTaken = endTime - startTime;
+		System.out.println("Time Taken for loop operation : " + timeTaken);
 
-	}	
+		double streamStart = System.nanoTime();
+		// use stream to filer
 
+		List<Bogie> streamFiltered = bogies.stream()
+				.filter(b -> b.capacity >= 50)
+				.toList();
+
+		double streamEnd = System.nanoTime();
+		double streamTime = streamEnd - streamStart;
+		System.out.println("Time Taken for Stream operation : " + streamTime);
+	}
 }
 
 
