@@ -2,47 +2,34 @@ package com.trainapp;
 
 import java.util.*;
 
-/* UC13: Performance Comparison (Loops vs Streams)
+/* UC14: Handle Invalid Bogie Capacity (Custom Exception)
  * @author developer
- * @version 13.0
+ * @version 14.0
  * 
  * */
 public class Main {
 
-	public static void main(String[] args) {
-		Scanner sc = new Scanner(System.in);
+	public static void main(String[] args){
+
 		System.out.println(" --- Train Management App! ---\n");
-
-		List<Bogie> bogies = new ArrayList<>();
-		bogies.add(new Bogie("Sleeper" , 72));
-		bogies.add(new Bogie("AC chair" , 54));
-		bogies.add(new Bogie("First Class" , 24));
-		bogies.add(new Bogie("General" , 90));
-
-		double startTime = System.nanoTime();
-		// use for loop to filter
-
-		List<Bogie> loopFiltered = new ArrayList<>();
-		for (Bogie b : bogies) {
-			if (b.capacity >= 50) {
-				loopFiltered.add(b);
-			}
+		// trying to create a boggie for sleeper
+		try {
+			Bogie b1 = new Bogie("Sleeper" , 72);
+			System.out.println("Created Bogie: " + b1.toString());
+		} catch (InvalidCapacityException e) {
+			System.out.println("Error: " + e.getMessage());
 		}
 
-		double endTime = System.nanoTime();
-		double timeTaken = endTime - startTime;
-		System.out.println("Time Taken for loop operation : " + timeTaken);
+		// trying to create a bogie for ac chair, with capacity 0
+		try {
+			Bogie b2 = new Bogie("AC chair" , 0);
+			System.out.println("Created Bogie: " + b2);
+		} catch (InvalidCapacityException e) {
+			System.out.println("Error: " + e.getMessage());
+		}
 
-		double streamStart = System.nanoTime();
-		// use stream to filer
 
-		List<Bogie> streamFiltered = bogies.stream()
-				.filter(b -> b.capacity >= 50)
-				.toList();
 
-		double streamEnd = System.nanoTime();
-		double streamTime = streamEnd - streamStart;
-		System.out.println("Time Taken for Stream operation : " + streamTime);
 	}
 }
 
