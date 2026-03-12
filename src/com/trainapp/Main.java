@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 
 /* UC9: Group Bogies by Type (Collectors.groupingBy)
  * @author developer
- * @version 9.0
+ * @version 10.0
  * 
  * */
 public class Main {
