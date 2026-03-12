@@ -9,7 +9,4 @@ public class Bogie {
 		this.name = name;
 		this.capacity = capacity;
 	}
-
-	
-
 }
