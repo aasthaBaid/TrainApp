@@ -2,9 +2,9 @@ package com.trainapp;
 
 import java.util.*;
 
-/* UC11: Validate Train ID & Cargo Codes (Regex)
+/* UC12: Safety Compliance Check for Goods Bogies
  * @author developer
- * @version 11.0
+ * @version 12.0
  * 
  * */
 public class Main {
@@ -12,24 +12,38 @@ public class Main {
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		System.out.println(" --- Train Management App! ---\n");
-		
-		// take input for train ID and cargo code
-		System.out.println("Enter Train ID :");
-		String traindId = sc.nextLine();
-		System.out.println("Enter Cargo Code:");
-		String cargoCode = sc.nextLine();
-		 
-		// validating and printing validity of train id and cargo code
-		if(Validator.validateTrainId(traindId)) {
-			System.out.println("Is valid: True");
-		}
-		else System.out.println("Is valid : False");
-		
-		if(Validator.validateCargoCode(cargoCode)) {
-			System.out.println("Is valid: True");
-		}
-		else System.out.println("Is valid : False");
+		// Create goods bogies list
+        List<GoodsBogie> goodsBogies = new ArrayList<>();
+
+        goodsBogies.add(new GoodsBogie("Cylindrical", "Petroleum"));
+        goodsBogies.add(new GoodsBogie("Open", "Coal"));
+        goodsBogies.add(new GoodsBogie("Box", "Grain"));
+        goodsBogies.add(new GoodsBogie("Cylindrical", "Coal")); 
+        // Display bogies
+        System.out.println("Goods Bogies in Train:");
+        goodsBogies.forEach(bg -> System.out.println(bg.type + " -> " + bg.cargo));
+        System.out.println();
+
+        // Safety rule:
+        // Cylindrical bogies are ONLY safe if carrying Petroleum
+        boolean isSafe = goodsBogies.stream().allMatch(bg -> {
+            if (bg.type.equalsIgnoreCase("Cylindrical")) {
+                return bg.cargo.equalsIgnoreCase("Petroleum");
+            }
+            return true; // all other bogies okay
+        });
+
+        // Print result
+        System.out.println("Safety Compliance Status: " + isSafe);
+
+        if (isSafe) {
+            System.out.println("Train formation is SAFE.");
+        } else {
+            System.out.println("Train formation is NOT SAFE.");
+        }
 
 	}	
 
 }
+
+
